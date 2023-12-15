@@ -1,15 +1,15 @@
-const style = (element, prop) => (typeof getComputedStyle !== 'undefined'
+const style = (element: HTMLElement, prop: string) => (typeof getComputedStyle !== 'undefined'
     ? getComputedStyle(element, null).getPropertyValue(prop)
     : element.style.getPropertyValue(prop));
 
-const overflow = element => style(element, 'overflow') + style(element, 'overflow-y') + style(element, 'overflow-x');
+const overflow = (element: HTMLElement) => style(element, 'overflow') + style(element, 'overflow-y') + style(element, 'overflow-x');
 
-export default element => {
+export default (element: React.Component | null | undefined): Window | HTMLElement => {
     if (!(element instanceof HTMLElement)) {
         return window;
     }
 
-    let parent = element;
+    let parent: HTMLElement | null = element;
 
     while (parent) {
         if (parent === document.body || parent === document.documentElement) {
@@ -24,7 +24,7 @@ export default element => {
             return parent;
         }
 
-        parent = parent.parentNode;
+        parent = parent.parentElement;
     }
 
     return window;

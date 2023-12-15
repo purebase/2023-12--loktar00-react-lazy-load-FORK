@@ -6,7 +6,7 @@ import React, {
     RefObject
 } from 'react';
 // eslint-disable-next-line import/extensions
-import scrollParent from './utils/index.js';
+import scrollParent from './utils';
 
 type Props = {
   children: ReactNode,
